@@ -12,8 +12,8 @@
 #include <stdlib.h>
 
 int ehPrimo(int numero) {
-    if (numero <= 1) return 0; // 0 e 1 não são primos
-    if (numero % 2 == 0 && numero > 2) return 0; // Exclui números pares maiores que 2
+    if (numero <= 1) return 0;
+    if (numero % 2 == 0 && numero > 2) return 0;
     for (int i = 3; i * i <= numero; i += 2) {
         if (numero % i == 0) return 0;
     }
