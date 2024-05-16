@@ -1,5 +1,5 @@
 //
-// Created by MarquesV on 26/04/2024.
+// Created by MarquesV on 03/05/2024.
 //
 
 /*
@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#define TAM 5
+#define TAM 7
 #define LIMIT 10
 
 void preencheMatrizAleatoria(int mat[TAM][TAM]) {
@@ -31,11 +31,11 @@ void imprimeMatriz(int mat[TAM][TAM]) {
     }
 }
 
-int extraiElementoCentral(int mat[TAM][TAM]) {
-    int m = (TAM - 1)/2;
-    int pontoCentral = mat[m][m];
 
-    return pontoCentral;
+void imprimeVetor(int vet[TAM]) {
+    for(int i = 0; i < TAM; i++){
+        printf("%d ", vet[i]);
+    }
 }
 
 int ePrimo(int number) {
@@ -53,16 +53,30 @@ int main() {
     srand(time(NULL));
 
     int mat[TAM][TAM];
-    int pontoCentral;
+    int diagSecundaria[TAM];
 
     preencheMatrizAleatoria(mat);
     printf("A matriz gerada aleatoriamente e:\n");
     imprimeMatriz(mat);
 
-    pontoCentral = extraiElementoCentral(mat);
+    for(int i = 0; i < TAM; i++) {
+        for(int j = 0; j < TAM; j++) {
+            if(j == TAM - 1 - i) {
+                diagSecundaria[i] = mat[i][j];
+            }
+        }
+    }
+
+    printf("A diag. secundaria e:\n");
+    imprimeVetor(diagSecundaria);
 
 
-    ePrimo(pontoCentral) ? printf("O valor central (%d) e primo", pontoCentral) : printf("O valor central (%d) nao e primo", pontoCentral);
+    printf("\nOs valores primos da diag. secundaria sao:\n");
+    for(int i = 0; i < TAM; i++) {
+        if(ePrimo(diagSecundaria[i])){
+            printf("%d e primo\n", diagSecundaria[i]);
+        }
+    }
 
     return 0;
 
